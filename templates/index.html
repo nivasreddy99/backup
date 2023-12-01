@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Prediction using Machine Learning</title>
+    <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+    <style>
+
+legend,
+fieldset,
+select,
+textarea,
+input,
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+      body{
+    text-align:center;
+  }
+  body {
+  margin: 0;
+  background-color: hsl(0, 0%, 98%);
+  color: #333;
+  font: 100% / normal sans-serif;
+}
+
+main {
+  margin: 0 auto;
+  padding: 4rem 0;
+  width: 90%;
+  max-width: 60rem;
+}
+  h1{
+    color:black;
+  }
+  
+  #form {
+  box-sizing: border-box;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: hsl(0, 0%, 100%);
+  border: 4px solid hsl(0, 0%, 90%);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+select {
+  background: url("images/down-arrow.svg") no-repeat center right 0.75rem;
+}
+
+input[type="text"],
+select,
+textarea {
+  font: 1.25rem / 1.5 sans-serif;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+}
+   input:hover{
+     border: 2px solid blue;
+     border-radius: 8%;
+   }
+  
+  button{
+    margin:0 37% 0 37%; 
+    width: 26%;
+    background-color: rgb(25, 175, 235);
+    border:2px solid rgb(25, 175, 235);
+    color:white;
+    font-weight: 900;
+    border-radius: 8%;
+  }
+  
+  @media(max-width:756px){
+    #form{
+    width:60%;
+    position:relative;
+    left:85%;
+    }
+  }
+  
+  @media(max-width:362px){
+    #form{
+    width:80%;
+    position:relative;
+    left:5%;
+    }
+  }
+  .form-group{
+    align-items: center;
+    border: 20pt;
+    border-radius: 5%;
+    flex-direction: column;
+  }
+ label {
+  display: inline-block;
+  font: bold 1.5rem sans-serif;
+  margin-bottom: 0.5rem;
+  text-align: right;
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1; /* Firefox */
+  color: #333;
+}
+
+button {
+  font: 1.25rem sans-serif;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  padding: 0.75rem 1.25rem;
+}
+
+
+select{
+    background-attachment: fixed;
+    column-gap: normal;
+    color: #333;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <h1 id="title">Sales Prediction using Machine Learning</h1>
+    <p id="description"></p>
+    <form id="form"  action="{{ url_for('predict') }}" method="POST" style="margin-bottom: 20px;">
+       
+        <div class="form-group">
+        <label for="exampleFormControlInput1">Item Identifier</label>
+        <input type="form-input" type="text" name="Item ID" class="form-control" id="exampleFormControlInput1" placeholder="Item ID" required="required">
+        </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Item Weight   </label>
+        <input type="form-input" type="text" name="Weight" class="form-control" id="exampleFormControlInput1" placeholder="Weight" required="required">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Item Fat Content</label>
+        <select class="form-control" id="exampleFormControlSelect1"  type="text" name="Item Fat Content">
+            <option>Low Fat</option>
+            <option>Regular</option>
+            <option>Non-Edible</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Item MRP    </label>
+        <input type="form-input" type="text" name="Item MRP" class="form-control" id="exampleFormControlInput1" placeholder="Item MRP" required="required">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Outlet  Identifier   </label>
+        <select class="form-control" id="exampleFormControlSelect1"  type="text" name="OutletID">
+            <option>Outlet 1</option>
+            <option>Outlet 2</option>
+            <option>Outlet 3</option>
+            <option>Outlet 4</option>
+            <option>Outlet 5</option>
+            <option>Outlet 6</option>
+            <option>Outlet 7</option>
+            <option>Outlet 8</option>
+            <option>Outlet 9</option>
+            <option>Outlet 10</option>
+            <option>Other</option>
+        </select>    
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Outlet  Establishment Year</label>
+        <input type="form-input" type="text" name="Year" class="form-control" id="exampleFormControlInput1" placeholder="Year" required="required">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Outlet  Size</label>
+        <select class="form-control" id="exampleFormControlSelect1"  type="text" name="Size">
+            <option>Medium</option>
+            <option>Small</option>
+            <option>High</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Outlet  Location Type</label>
+        <select class="form-control" id="exampleFormControlSelect1"  type="text" name="Location Type">
+
+            <option>Tier 1</option>
+            <option>Tier 2</option>           
+            <option>Tier 3</option>
+       
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Outlet  Type</label>
+        <select class="form-control" id="exampleFormControlSelect1"  type="text" name="Outlet Type">
+            <option>Grocery Store</option>
+            <option>Supermarket Type1</option>
+            <option>Supermarket Type3</option>
+            <option>Supermarket Type2</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Item Type</label>
+        <select class="form-control" id="exampleFormControlSelect1"  type="text" name="Item Type">
+            <option>Food</option>
+            <option>Non-Consumable</option>
+            <option>Drinks</option>
+        </select>
+    </div>
+    <!-- <center><input type="submit" class="btn btn-success p-2" value="Predict"></center>
+          <center><input type="submit" class="btn btn-success p-2" value="Predict"></center> -->
+     <button type="submit" class="btn btn-success p-2" value="Predict">Predict</button>
+    </form>
+</body>
+</html>

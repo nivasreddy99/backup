@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Prediction using Machine Learning</title>
+    <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+	<style>
+		ul{
+  list-style:none;
+}
+
+ul li{
+  float:left;
+  padding:10px;
+  border-bottom:1px solid #000;
+  border-right:1px solid #000;
+}
+
+ul li:nth-child(3n){
+  background-color:#888;
+}
+
+ul li:nth-child(3n+1){
+  clear:both;
+  border-left:1px solid #000;
+  background-color:#ccc;
+}
+
+ul li:nth-child(-n+3){
+  border-top:1px solid #000;
+}
+		</style>
+
+</head>
+
+<body>
+ <h1 id="title">Sales Prediction using Machine Learning</h1>
+<div class="container">
+	<h2>The Sales prediction of Item {{ Item_Identifier }} by the outlet {{ Outlet_Identifier }} is </h2>
+	<ul class="responsive-table">
+	  <li class="table-row">
+		<div class="col col-1" data-label="Job Id">{{ predict[0][0]}}</div>
+		<div class="col col-2" data-label="Amount">${{ predict[0][1]}}</div>
+	  </li>
+	  <li class="table-row">
+		<div class="col col-1" data-label="Job Id">{{ predict[1][0]}}</div>
+		<div class="col col-2" data-label="Amount">${{ predict[1][1]}}</div>
+	  </li>
+	  <li class="table-row">
+		<div class="col col-1" data-label="Job Id">{{ predict[2][0]}}</div>
+		<div class="col col-2" data-label="Amount">${{ predict[2][1]}}</div>
+	  </li>
+	  <li class="table-row">
+		<div class="col col-1" data-label="Job Id">{{ predict[3][0]}}</div>
+		<div class="col col-2" data-label="Amount">${{ predict[3][1]}}</div>
+	  </li>
+	  <li class="table-row">
+		<div class="col col-1" data-label="Job Id">{{ predict[4][0]}}</div>
+		<div class="col col-2" data-label="Amount">${{ predict[4][1]}}</div>
+	  </li>
+	  <li class="table-row">
+		<div class="col col-1" data-label="Job Id">{{ predict[5][0]}}</div>
+		<div class="col col-2" data-label="Amount">${{ predict[5][1]}}</div>
+	  </li>
+	  <li class="table-row">
+		<div class="col col-1" data-label="Job Id"><a href="index.html">Return to</a></div>
+		<div class="col col-1" data-label="Job Id"><a href="index.html">Sales Prediction</a></div>
+	  </li>
+	</ul>
+</div>
+
+
+</body>
